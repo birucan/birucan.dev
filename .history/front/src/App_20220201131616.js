@@ -10,7 +10,7 @@ import '98.css'
 function App() {
 
   return (
-  <DndProvider backend={HTML5Backend}>
+  <DndProvider>
     <div className="App">
           <Window styles={{position:'absolute'}} content={<>test</>}/>
     </div>
