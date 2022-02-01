@@ -3,13 +3,21 @@ import Window from "../Window/Window";
 import '98.css'
 
 
-export default function Screen() {
+export default Screen = () => {
       
+  const [screenMouseState, setScreenMouseState] = useState("up");
 
+  const mouseUp = (e)=>{
+    setScreenMouseState("up")
+  }
+
+  const mouseDown = (e)=>{
+    setScreenMouseState("down")
+  }
     return (
-        <div styles={{minHeight:'100vh', minWidth:'100vw'}} >
-            <div styles={{position:'absolute', top: '300px', left: '400px' }} >
-                <Window 
+        <div styles={{minHeight:'100vh', minWidth:'100vw'}} onMouseDown={mouseDown} onMouseUp={mouseUp}>
+            <div >
+                <Window  
                 content={<></>} 
                 title="test" 
                 maximized={false}
@@ -18,6 +26,7 @@ export default function Screen() {
                 height={100}
                 xPos={0}
                 yPos={0}
+                screenMouseState={screenMouseState}
                 />
             </div>
 

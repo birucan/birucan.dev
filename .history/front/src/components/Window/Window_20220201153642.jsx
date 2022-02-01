@@ -86,11 +86,6 @@ export default function Window({content=null,
           }    
       }
 
-      const handleMaximize=(e)=>{
-        setMaximizedState(true)
-        //TODO change position to 0,0 change width and heigh to the size of the view port
-      }
-
 
     return (
 
@@ -99,7 +94,7 @@ export default function Window({content=null,
           <div className="title-bar-text">{title}</div>
           <div className="title-bar-controls">
             <button aria-label="Minimize" />
-            <button aria-label="Maximize" onClick={handleMaximize}/>
+            <button aria-label="Maximize" />
             <button aria-label="Close" />
           </div>
         </div>

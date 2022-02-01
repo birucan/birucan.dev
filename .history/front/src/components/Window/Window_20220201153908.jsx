@@ -88,7 +88,7 @@ export default function Window({content=null,
 
       const handleMaximize=(e)=>{
         setMaximizedState(true)
-        //TODO change position to 0,0 change width and heigh to the size of the view port
+        
       }
 
 

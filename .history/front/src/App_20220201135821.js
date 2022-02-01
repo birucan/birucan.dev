@@ -1,4 +1,4 @@
-
+import './App.css';
 import React,{useState} from 'react';
 import Screen from "./components/Screen/Screen"
 import Window from "./components/Window/Window"
@@ -9,12 +9,12 @@ import '98.css'
 
 function App() {
 
-
   return (
-
+  <DndProvider backend={HTML5Backend}>
     <div className="App">
-      <Screen></Screen>
+          <Window styles={{position:'absolute'}} content={<></>}/>
     </div>
+  </DndProvider>
 
   );
 }

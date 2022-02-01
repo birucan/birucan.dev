@@ -1,4 +1,4 @@
-
+import './App.css';
 import React,{useState} from 'react';
 import Screen from "./components/Screen/Screen"
 import Window from "./components/Window/Window"
@@ -13,7 +13,7 @@ function App() {
   return (
 
     <div className="App">
-      <Screen></Screen>
+
     </div>
 
   );

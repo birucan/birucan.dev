@@ -86,20 +86,15 @@ export default function Window({content=null,
           }    
       }
 
-      const handleMaximize=(e)=>{
-        setMaximizedState(true)
-        //TODO change position to 0,0 change width and heigh to the size of the view port
-      }
-
 
     return (
 
-        <div key={widthState}draggable="false" style={{cursor: pointerState, width: widthState, height: heightState, padding:'2px' }} className="window"  onMouseDown={mouseDown}  onMouseMove={mouseMove}>
+        <div key={widthState}draggable="false" style={{cursor: pointerState, width: widthState, height: heightState, padding:'2px' }} className="window"  onMouseDown={mouseDown} onMouseUp={mouseUp} onMouseMove={mouseMove}>
         <div className="title-bar" onMouseDown={mouseDownTitle} onMouseUp={mouseUpTitle} onMouseMove={mouseMoveTitle}>
           <div className="title-bar-text">{title}</div>
           <div className="title-bar-controls">
             <button aria-label="Minimize" />
-            <button aria-label="Maximize" onClick={handleMaximize}/>
+            <button aria-label="Maximize" />
             <button aria-label="Close" />
           </div>
         </div>
@@ -107,8 +102,6 @@ export default function Window({content=null,
         <div className="window-body">
           {content}
           {mousePosition}
-          <br/>
-          {mouseState}
 
         </div>
         </div>

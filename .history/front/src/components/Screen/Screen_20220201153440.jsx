@@ -7,7 +7,7 @@ export default function Screen() {
       
 
     return (
-        <div styles={{minHeight:'100vh', minWidth:'100vw'}} >
+        <div styles={{minHeight:'100vh', minWidth:'100vw'}} onMouseDown={mouseDown} onMouseUp={mouseUp}>
             <div styles={{position:'absolute', top: '300px', left: '400px' }} >
                 <Window 
                 content={<></>} 
