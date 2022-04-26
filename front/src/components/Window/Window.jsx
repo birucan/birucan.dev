@@ -106,9 +106,9 @@ export default function Window({content=null,
   
         <div className="window-body">
           {content}
-          {mousePosition}
-          <br/>
-          {mouseState}
+          {/* {mousePosition} */}
+          {/* <br/> */}
+          {/* {mouseState} */}
 
         </div>
         </div>
