@@ -5,8 +5,8 @@ import '98.css'
 
 
 export default function Screen() {
-    const [activeWindows, setActiveWindows] = useState([{id:0, window:<IntroWindow key={Math.random()}/>, zIndex:1, currentTop:false, title:"Intro", initHeight:150, initWidth:200, initX:20, initY:20}, 
-    {id:2, window:<IntroWindow key={Math.random()}/>, zIndex:2, currentTop:true, title:"Intro2", initHeight:150, initWidth:200, initX:100, initY:100}]);
+    const [activeWindows, setActiveWindows] = useState([{id:1, window:<IntroWindow key={Math.random()}/>, zIndex:1, currentTop:false, title:"Intro", minimized:false, initHeight:150, initWidth:200, initX:20, initY:20}, 
+    {id:2, window:<IntroWindow key={Math.random()}/>, zIndex:2, currentTop:true, title:"Intro2", minimized:false, initHeight:150, initWidth:200, initX:100, initY:100}]);
     const [windowNum, setWindowNum] = useState(2);
     const [windowRender, setWindowRender] = useState([])
     const [updateState, setUpdateState] = useState(Math.random())
@@ -45,7 +45,6 @@ export default function Screen() {
     }
 
     const clickWindow=(id, oldZIndex)=>{
-        console.log(id, oldZIndex)
 
         setActiveWindows(activeWindows.map(window => {
 
@@ -63,23 +62,39 @@ export default function Screen() {
         setUpdateState(Math.random())
     }
 
+    const handleMinimize = (id) =>{
+        setActiveWindows(activeWindows.map(window => {
+
+            if(window.id === id){
+                return {...window, zIndex:windowNum, minimized:true, currentTop:true};
+            }else{
+                return window
+            }
+        }));
+
+        setUpdateState(Math.random())
+    }
+    
+
 
 
     useEffect(() => {
         setWindowRender(activeWindows.map((window)=>{
+        
           return (<Window
                     zIndex={window.zIndex}
                     id={window.id}
-                    style={{zIndex:window.zIndex}} 
+                    style={{zIndex:window.zIndex, overflow:"hidden", visibility:(window.minimized)?"hidden":"visible"}} 
                     content={window.window} 
                     title={window.title} 
                     key={window.id} 
-                    height={window.initHeight}
-                    width={window.initWidth}
+                    initHeight={window.initHeight}
+                    initWidth={window.initWidth}
                     xPos={window.initX}
                     yPos={window.initY}
                     clickHandle={clickWindow}
                     handleClose={closeWindow}
+                    handleMinimize={handleMinimize}
                     active={window.currentTop}
                 
                     />) ;
@@ -88,9 +103,12 @@ export default function Screen() {
     }, [updateState, windowNum])
     
     return (
+        <>
         <div style={{backgroundColor:"#008080", minHeight:'100vh',minWidth:'100vw', }}>
            { windowRender}
         </div>
+        {/* <Taskbar activeWindows={activeWindows} /> */}
+        </> 
 
     );
 }
