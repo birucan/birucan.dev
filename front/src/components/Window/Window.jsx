@@ -86,15 +86,15 @@ export default function Window({content=null,
       
       minWidth={initWidth}
       minHeight={initHeight} 
-      disableDragging={!canDrag && maximizedState===true} 
+      disableDragging={!canDrag} 
       style={{ ...style, width: size.width, height: size.height, padding:'2px' }} className="window" >
         <div  >
         <div className={(active===true)?"title-bar":"title-bar inactive"} onMouseLeave={()=>{setCanDrag(false)}} onMouseOver={()=>{setCanDrag(true)}} >
           <div className="title-bar-text" >{title}</div>
-          <div className="title-bar-controls">
+          <div className="title-bar-controls" onMouseOver={(e)=>{e.stopPropagation(); setCanDrag(false)}}>
             <button aria-label="Minimize"onClick={()=>{handleMinimize(id)}} />
             <button aria-label={(maximizedState)?"Restore":"Maximize"} onClick={()=>maximizeHandler()}/>
-            <button aria-label="Close" onClick={()=>{handleClose(id)}}/>
+            <button aria-label="Close" onClick={(e)=>{handleClose(id,e)}}/>
           </div>
         </div>
   

@@ -20,14 +20,15 @@ export default function Screen() {
         setUpdateState(Math.random())
     }
 
-    const closeWindow=(id)=>{
+    const closeWindow=(id,e )=>{
+        e.stopPropagation();
         setWindowNum(windowNum-1)
 
         let delElement;
 
         setActiveWindows(activeWindows.map(window => {
 
-            if(window.id = id){
+            if(window.id === id){
                 delElement= window;
                 return window;
             }else{
