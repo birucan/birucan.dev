@@ -1,4 +1,4 @@
-import React,{useState,useEffect} from "react";
+import React,{useState,useRef} from "react";
 import { Rnd } from "react-rnd";
 
 // 
@@ -18,13 +18,36 @@ export default function Window({content=null,
     style
   }) {
 
+
+    const [pos, setPos] = useState({x:xPos, y:yPos})
+    const [size, setSize] = useState({height:height, width:width})
+
+    const [prevPos, setPrevPos] = useState({x:xPos, y:yPos})
+    const [prevSize, setPrevSize] = useState({height:height, width:width})
+
     const [maximizedState, setMaximizedState]= useState(maximized);
 
     const [canDrag, setCanDrag] = useState(false)
 
 
-      const handleMaximize=(e)=>{
-        setMaximizedState(true)
+      const maximizeHandler=()=>{
+        if(!maximizedState){
+          setPrevPos(pos)
+          setPos({x:0, y:0})
+
+          setPrevSize(size)
+          setSize({height:window.screen.height, width:window.screen.width})
+
+
+          setMaximizedState(true)
+        }else{
+          setPos(prevPos)
+
+          setSize(prevSize)
+
+          setMaximizedState(false)
+        }
+
         //TODO change position to 0,0 change width and heigh to the size of the view port
 
       }
@@ -38,7 +61,17 @@ export default function Window({content=null,
         width: width,
         height: height
       }}
-      onClick={()=>clickHandle(id, zIndex)}
+      position={{
+        x: pos.x,
+        y: pos.y,
+        width: size.width,
+        height: size.height
+      }}
+      onDragStop={(e, d) => { setPos({ x: d.x, y: d.y });}}
+      onResize={(e, direction, ref, delta, position) => {
+        setSize({height: ref.offsetHeight, width:ref.offsetWidth})
+      }}
+      onMouseDown={()=>clickHandle(id, zIndex)}
       
       minWidth={width}
       minHeight={height} 
@@ -49,7 +82,7 @@ export default function Window({content=null,
           <div className="title-bar-text" >{title}</div>
           <div className="title-bar-controls">
             <button aria-label="Minimize" />
-            <button aria-label="Maximize" onClick={handleMaximize}/>
+            <button aria-label={(maximizedState)?"Restore":"Maximize"} onClick={()=>maximizeHandler()}/>
             <button aria-label="Close" />
           </div>
         </div>

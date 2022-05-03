@@ -63,6 +63,8 @@ export default function Screen() {
         setUpdateState(Math.random())
     }
 
+
+
     useEffect(() => {
         setWindowRender(activeWindows.map((window)=>{
           return (<Window
@@ -77,6 +79,7 @@ export default function Screen() {
                     xPos={window.initX}
                     yPos={window.initY}
                     clickHandle={clickWindow}
+                    handleClose={closeWindow}
                     active={window.currentTop}
                 
                     />) ;
