@@ -5,16 +5,19 @@ import '98.css'
 
 
 export default function Screen() {
-    const [activeWindows, setActiveWindows] = useState([{id:0, window:<IntroWindow key={0}/>, zIndex:1, currentTop:false, title:"Intro"}], [{id:2, window:<IntroWindow key={2}/>, zIndex:2, currentTop:true, title:"Intro2"}]);
+    const [activeWindows, setActiveWindows] = useState([{id:0, window:<IntroWindow key={0}/>, zIndex:1, currentTop:false, title:"Intro", initHeight:150, initWidth:200, initX:20, initY:20}, 
+    {id:2, window:<IntroWindow key={2}/>, zIndex:2, currentTop:true, title:"Intro2", initHeight:150, initWidth:200, initX:100, initY:100}]);
     const [windowNum, setWindowNum] = useState(2);
     const [windowRender, setWindowRender] = useState([])
+    const [updateState, setUpdateState] = useState(Math.random())
 
-    const addWindow=(newWindow)=>{
+    const addWindow=(newWindow, title="untitled", initHeight=200, initWidth=200, initX=0, initY=0)=>{
         setWindowNum(windowNum+1)
         setActiveWindows(activeWindows.map(window => {
             return {...window, id:window.id, window:window.window, zIndex:window.zIndex, currentTop:false}
         }));
-        setActiveWindows(...activeWindows, {...window, id:windowNum, window:window, zIndex:windowNum, currentTop:true, initHeight:150, initWidth:200});
+        setActiveWindows(...activeWindows, {id:windowNum, window:newWindow, zIndex:windowNum, currentTop:true, title:title, initHeight:initHeight, initWidth:initWidth, initX:initX, initY:initY});
+        setUpdateState(Math.random())
     }
 
     const closeWindow=(id)=>{
@@ -37,10 +40,11 @@ export default function Screen() {
         }));
 
         setActiveWindows(activeWindows.filter(item => item !== delElement))
+        setUpdateState(Math.random())
+
     }
 
     const clickWindow=(id, oldZIndex)=>{
-
 
         setActiveWindows(activeWindows.map(window => {
 
@@ -55,33 +59,35 @@ export default function Screen() {
             }
         }));
 
-        
+        setUpdateState(Math.random())
     }
 
     useEffect(() => {
+        console.log("useEffect")
         setWindowRender(activeWindows.map((window)=>{
-          const newElement = window.window;
-          console.log(newElement)
+            console.log("a", window)
           return (<Window
                     zIndex={window.zIndex}
                     id={window.id}
                     style={{zIndex:window.zIndex}} 
-                    content={newElement} 
+                    content={window.window} 
                     title={window.title} 
                     key={window.id} 
                     height={window.initHeight}
                     width={window.initWidth}
+                    xPos={window.initX}
+                    yPos={window.initY}
                     clickHandle={clickWindow}
                     active={window.currentTop}
-
+                
                     />) ;
         }))
 
-    }, [activeWindows])
+    }, [updateState, windowNum])
     
     return (
         <div style={{backgroundColor:"#008080", minHeight:'100vh',minWidth:'100vw', }}>
-            {windowRender}
+           { windowRender}
         </div>
 
     );
