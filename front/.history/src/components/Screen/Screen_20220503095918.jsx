@@ -5,8 +5,8 @@ import '98.css'
 
 
 export default function Screen() {
-    const [activeWindows, setActiveWindows] = useState([{id:0, window:<IntroWindow key={Math.random()}/>, zIndex:1, currentTop:false, title:"Intro", initHeight:150, initWidth:200, initX:20, initY:20}, 
-    {id:2, window:<IntroWindow key={Math.random()}/>, zIndex:2, currentTop:true, title:"Intro2", initHeight:150, initWidth:200, initX:100, initY:100}]);
+    const [activeWindows, setActiveWindows] = useState([{id:0, window:<IntroWindow key={0}/>, zIndex:1, currentTop:false, title:"Intro", initHeight:150, initWidth:200, initX:20, initY:20}, 
+    {id:2, window:<IntroWindow key={2}/>, zIndex:2, currentTop:true, title:"Intro2", initHeight:150, initWidth:200, initX:100, initY:100}]);
     const [windowNum, setWindowNum] = useState(2);
     const [windowRender, setWindowRender] = useState([])
     const [updateState, setUpdateState] = useState(Math.random())
@@ -45,11 +45,10 @@ export default function Screen() {
     }
 
     const clickWindow=(id, oldZIndex)=>{
-        console.log(id, oldZIndex)
 
         setActiveWindows(activeWindows.map(window => {
 
-            if(window.id === id){
+            if(window.id = id){
                 return {...window, zIndex:windowNum, currentTop:true};
             }else{
                 if(window.zIndex===windowNum){
@@ -64,7 +63,9 @@ export default function Screen() {
     }
 
     useEffect(() => {
+        console.log("useEffect")
         setWindowRender(activeWindows.map((window)=>{
+            console.log("a", window)
           return (<Window
                     zIndex={window.zIndex}
                     id={window.id}

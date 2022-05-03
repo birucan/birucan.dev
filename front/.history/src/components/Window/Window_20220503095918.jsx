@@ -15,7 +15,6 @@ export default function Window({content=null,
     zIndex,
     id,
     active=false,
-    style
   }) {
 
     const [maximizedState, setMaximizedState]= useState(maximized);
@@ -43,7 +42,7 @@ export default function Window({content=null,
       minWidth={width}
       minHeight={height} 
       disableDragging={!canDrag} 
-      style={{ ...style, width: width, height: height, padding:'2px' }} className="window" >
+      style={{ width: width, height: height, padding:'2px' }} className="window" >
         <div  >
         <div className={(active===true)?"title-bar":"title-bar inactive"} onMouseLeave={()=>{setCanDrag(false)}} onMouseOver={()=>{setCanDrag(true)}} >
           <div className="title-bar-text" >{title}</div>

@@ -49,7 +49,7 @@ export default function Screen() {
 
         setActiveWindows(activeWindows.map(window => {
 
-            if(window.id === id){
+            if(window.id = id){
                 return {...window, zIndex:windowNum, currentTop:true};
             }else{
                 if(window.zIndex===windowNum){
@@ -64,7 +64,9 @@ export default function Screen() {
     }
 
     useEffect(() => {
+        console.log("useEffect")
         setWindowRender(activeWindows.map((window)=>{
+            console.log("a", window)
           return (<Window
                     zIndex={window.zIndex}
                     id={window.id}
