@@ -15,6 +15,8 @@ export default function IntroWindow() {
                     <button style={{left:100 }}onClick={()=>{ window.open("https://github.com/birucan");}}>
                         github
                     </button>
+
+
                  </div>
 
                 </>

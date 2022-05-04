@@ -1,7 +1,7 @@
 import React,{useState, useEffect} from "react";
 import Window from "../Window/Window";
 import IntroWindow from "../Applications/IntroWindow/IntroWindow";
-import '98.css'
+import Taskbar from "../Taskbar/Taskbar";
 
 
 export default function Screen() {
@@ -85,7 +85,7 @@ export default function Screen() {
           return (<Window
                     zIndex={window.zIndex}
                     id={window.id}
-                    style={{zIndex:window.zIndex, overflow:"hidden", visibility:(window.minimized)?"hidden":"visible"}} 
+                    style={{zIndex:window.zIndex, visibility:(window.minimized)?"hidden":"visible"}} 
                     content={window.window} 
                     title={window.title} 
                     key={window.id} 
@@ -105,10 +105,10 @@ export default function Screen() {
     
     return (
         <>
-        <div style={{backgroundColor:"#008080", minHeight:'100vh',minWidth:'100vw', }}>
+        <div style={{backgroundColor:"#008080", minHeight:'100vh',minWidth:'100vw', overflow:"hidden",}}>
            { windowRender}
         </div>
-        {/* <Taskbar activeWindows={activeWindows} /> */}
+        <Taskbar activeWindows={activeWindows} />
         </> 
 
     );
