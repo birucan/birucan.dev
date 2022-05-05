@@ -4,12 +4,18 @@ import IntroWindow from "../Applications/IntroWindow/IntroWindow";
 import Taskbar from "../Taskbar/Taskbar";
 
 
+
 export default function Screen() {
-    const [activeWindows, setActiveWindows] = useState([{id:1, window:<IntroWindow key={Math.random()}/>, zIndex:1, currentTop:false, title:"Intro", minimized:false, initHeight:150, initWidth:200, initX:20, initY:20}, 
-    {id:2, window:<IntroWindow key={Math.random()}/>, zIndex:2, currentTop:true, title:"Intro2", minimized:false, initHeight:150, initWidth:200, initX:100, initY:100}]);
+    const [activeWindows, setActiveWindows] = useState([{id:1, window:<IntroWindow key={Math.random()}/>, zIndex:1, currentTop:false, icon:"icons/intro.png", title:"Intro", minimized:false, initHeight:200, initWidth:200, initX:20, initY:20}, 
+    {id:2, window:<IntroWindow key={Math.random()}/>, zIndex:2, currentTop:true, title:"Intro2", icon:"icons/intro.png", minimized:false, initHeight:200, initWidth:200, initX:200, initY:100}]);
     const [windowNum, setWindowNum] = useState(2);
     const [windowRender, setWindowRender] = useState([])
     const [updateState, setUpdateState] = useState(Math.random())
+
+
+    const update = ()=>{
+        setUpdateState(Math.random())
+    }
 
     const addWindow=(newWindow, title="untitled", initHeight=200, initWidth=200, initX=0, initY=0)=>{
         setWindowNum(windowNum+1)
@@ -17,7 +23,7 @@ export default function Screen() {
             return {...window, id:window.id, window:window.window, zIndex:window.zIndex, currentTop:false}
         }));
         setActiveWindows(...activeWindows, {id:windowNum, window:newWindow, zIndex:windowNum, currentTop:true, title:title, initHeight:initHeight, initWidth:initWidth, initX:initX, initY:initY});
-        setUpdateState(Math.random())
+        update()
     }
 
     const closeWindow=(id,e )=>{
@@ -41,7 +47,7 @@ export default function Screen() {
         }));
 
         setActiveWindows(activeWindows.filter(item => item !== delElement))
-        setUpdateState(Math.random())
+        update()
 
     }
 
@@ -60,20 +66,21 @@ export default function Screen() {
             }
         }));
 
-        setUpdateState(Math.random())
+        update()
     }
 
     const handleMinimize = (id) =>{
         setActiveWindows(activeWindows.map(window => {
 
             if(window.id === id){
-                return {...window, zIndex:windowNum, minimized:true, currentTop:true};
+
+                return {...window, minimized:(window.minimized)?false:true, currentTop:(window.minimized)?false:true};
             }else{
                 return window
             }
         }));
 
-        setUpdateState(Math.random())
+        update()
     }
     
 
@@ -97,6 +104,7 @@ export default function Screen() {
                     handleClose={closeWindow}
                     handleMinimize={handleMinimize}
                     active={window.currentTop}
+                    icon={window.icon}
                 
                     />) ;
         }))
@@ -108,7 +116,7 @@ export default function Screen() {
         <div style={{backgroundColor:"#008080", minHeight:'100vh',minWidth:'100vw', overflow:"hidden",}}>
            { windowRender}
         </div>
-        <Taskbar activeWindows={activeWindows} />
+        <Taskbar activeWindows={activeWindows} handleMinimize={handleMinimize} clickWindow={clickWindow}/>
         </> 
 
     );

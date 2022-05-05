@@ -18,6 +18,7 @@ export default function Window({content=null,
     style,
     handleMinimize,
     handleClose, 
+    icon
   }) {
 
 
@@ -31,30 +32,20 @@ export default function Window({content=null,
 
     const [canDrag, setCanDrag] = useState(false)
 
-
       const maximizeHandler=()=>{
         if(!maximizedState){
           setPrevPos(pos)
           setPos({x:0, y:0})
-
           setPrevSize(size)
-
           let newSize= {height:window.innerHeight, width:window.innerWidth}
-
           setSize(newSize)
-
           setMaximizedState(true)
         }else{
           setPos(prevPos)
-
           setSize(prevSize)
-
           setMaximizedState(false)
         }
-
-
       }
-
 
     return (
       <Rnd     
@@ -88,9 +79,14 @@ export default function Window({content=null,
       minHeight={initHeight} 
       disableDragging={!canDrag} 
       style={{ ...style, width: size.width, height: size.height, padding:'2px' }} className="window" >
-        <div  >
+
         <div className={(active===true)?"title-bar":"title-bar inactive"} onMouseLeave={()=>{setCanDrag(false)}} onMouseOver={()=>{setCanDrag(true)}} >
-          <div className="title-bar-text" >{title}</div>
+
+        <div style={{display: "flex", flexDirection: "row", alignItems: "center"}}>
+          <img style={{padding:"0px 0px 0px 0px", margin:"0px 0px 0px 0px"}}height={16} width={16} alt="" src={icon}/>
+          <div className="title-bar-text" > {title}</div>
+        </div>
+          
           <div className="title-bar-controls" onMouseOver={(e)=>{e.stopPropagation(); setCanDrag(false)}}>
             <button aria-label="Minimize"onClick={()=>{handleMinimize(id)}} />
             <button aria-label={(maximizedState)?"Restore":"Maximize"} onClick={()=>maximizeHandler()}/>
@@ -101,7 +97,7 @@ export default function Window({content=null,
         <div className="window-body">
           {content}
         </div>
-        </div>
+        
 
       </Rnd>
 
