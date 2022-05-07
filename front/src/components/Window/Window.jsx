@@ -37,7 +37,7 @@ export default function Window({content=null,
           setPrevPos(pos)
           setPos({x:0, y:0})
           setPrevSize(size)
-          let newSize= {height:window.innerHeight, width:window.innerWidth}
+          let newSize= {height:window.innerHeight-38, width:window.innerWidth-10}
           setSize(newSize)
           setMaximizedState(true)
         }else{

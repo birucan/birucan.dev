@@ -1,0 +1,14 @@
+{
+    "root":{
+        "desktop":{
+            "Intro":".exe",
+            "TestApp":".exe",
+            "testFolder":{
+                "testFolder2":{
+                    "Test":".exe"
+                }
+            }
+        }
+
+    }
+}

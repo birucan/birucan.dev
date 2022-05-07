@@ -1,5 +1,4 @@
 import React,{useState} from "react";
-import Window from "../../Window/Window";
 import '98.css'
 
 

@@ -1,5 +1,7 @@
 .App {
   text-align: left;
+  overflow-x:hidden;
+  overflow-y: hidden;
 }
 
 

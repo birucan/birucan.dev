@@ -2,6 +2,7 @@ import React,{useState, useEffect} from "react";
 import Window from "../Window/Window";
 import IntroWindow from "../Applications/IntroWindow/IntroWindow";
 import Taskbar from "../Taskbar/Taskbar";
+import Desktop from "../Desktop/Desktop";
 
 
 
@@ -114,7 +115,9 @@ export default function Screen() {
     return (
         <>
         <div style={{backgroundColor:"#008080", minHeight:'100vh',minWidth:'100vw', overflow:"hidden",}}>
+        
            { windowRender}
+        <Desktop/>
         </div>
         <Taskbar activeWindows={activeWindows} handleMinimize={handleMinimize} clickWindow={clickWindow}/>
         </> 
