@@ -86,8 +86,6 @@ export default function Window({
       disableDragging={!canDrag}
       style={{
         ...style,
-        width: size.width,
-        height: size.height,
         padding: "2px",
       }}
       className="window"
@@ -144,7 +142,9 @@ export default function Window({
         </div>
       </div>
 
-      <div className="window-body">{content}</div>
+      <div style={{ height: "95%" }} className="window-body">
+        {content}
+      </div>
     </Rnd>
   );
 }
