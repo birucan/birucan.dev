@@ -2,6 +2,7 @@
   "name": "front",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://birucan.cc/",
   "dependencies": {
     "98.css": "^0.1.17",
     "@testing-library/jest-dom": "^5.16.1",
