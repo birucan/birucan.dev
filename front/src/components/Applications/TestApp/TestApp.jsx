@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "98.css";
 
-export default function IntroWindow() {
+const TestApp = () => {
   return (
     <>
       <p style={{ textAlign: "center" }}>
@@ -22,5 +22,5 @@ export default function IntroWindow() {
       </div>
     </>
   );
-}
-IntroWindow.displayName = "Intro";
+};
+TestApp.displayName = "Test";

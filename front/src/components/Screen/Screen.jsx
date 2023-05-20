@@ -3,37 +3,39 @@ import Window from "../Window/Window";
 import IntroWindow from "../Applications/IntroWindow/IntroWindow";
 import Taskbar from "../Taskbar/Taskbar";
 import Desktop from "../Desktop/Desktop";
-import ResumeDisplay from "../Applications/ResumeDisplay/ResumeDisplay";
-
-export default function Screen() {
-  const [activeWindows, setActiveWindows] = useState([
-    {
-      id: 1,
-      window: <IntroWindow key={Math.random()} />,
-      zIndex: 1,
-      currentTop: false,
-      icon: "icons/intro.png",
-      title: "Intro",
-      minimized: false,
-      initHeight: 200,
-      initWidth: 200,
-      initX: 50,
-      initY: 20,
-    },
-    {
-      id: 2,
-      window: <ResumeDisplay key={Math.random()} />,
-      zIndex: 2,
-      currentTop: true,
-      title: "resume",
-      icon: "icons/textFile.png",
-      minimized: false,
-      initHeight: 800,
-      initWidth: 700,
-      initX: 300,
-      initY: 50,
-    },
-  ]);
+import PDFDisplay from "../Applications/ResumeDisplay/ResumeDisplay";
+import { useRecoilState } from "recoil";
+import { currentWindowState } from "../../State/global";
+const Screen = () => {
+  const [activeWindows, setActiveWindows] = useRecoilState(currentWindowState);
+  // const [activeWindows, setActiveWindows] = useState([
+  //   {
+  //     id: 1,
+  //     window: <IntroWindow key={Math.random()} />,
+  //     zIndex: 1,
+  //     currentTop: false,
+  //     icon: "icons/intro.png",
+  //     title: "Intro",
+  //     minimized: false,
+  //     initHeight: 200,
+  //     initWidth: 200,
+  //     initX: 50,
+  //     initY: 20,
+  //   },
+  //   {
+  //     id: 2,
+  //     window: <ResumeDisplay key={Math.random()} />,
+  //     zIndex: 2,
+  //     currentTop: true,
+  //     title: "resume",
+  //     icon: "icons/textFile.png",
+  //     minimized: false,
+  //     initHeight: 800,
+  //     initWidth: 700,
+  //     initX: 300,
+  //     initY: 50,
+  //   },
+  // ]);
   const [windowNum, setWindowNum] = useState(2);
   const [windowRender, setWindowRender] = useState([]);
   const [updateState, setUpdateState] = useState(Math.random());
@@ -185,4 +187,5 @@ export default function Screen() {
       />
     </>
   );
-}
+};
+export default Screen;

@@ -1,8 +1,14 @@
 import React, { useState } from "react";
 
-import { getFile, createFile, addFileToFolder } from "../../utils/fileManager";
+import {
+  getFile,
+  createFile,
+  addFileToFolder,
+  openFile,
+  fileMap,
+} from "../Applications/utils/fileManager";
 
-export default function Desktop() {
+const Desktop = () => {
   // eslint-disable-next-line @typescript-eslint/no-var-requires, no-undef
   const desktop = require("../../objects/defaultFolders.json").root.desktop;
 
@@ -20,7 +26,6 @@ export default function Desktop() {
         }}
       >
         {Object.keys(desktop).map((item) => {
-          console.log(getFile(item).icon);
           return (
             <div
               style={{
@@ -40,7 +45,7 @@ export default function Desktop() {
                 alignItems: "center",
               }}
               onDoubleClick={() => {
-                console.log("doubleClick!");
+                openFile(getFile(item));
               }}
             >
               <img
@@ -74,4 +79,5 @@ export default function Desktop() {
       </div>
     </>
   );
-}
+};
+export default Desktop;
