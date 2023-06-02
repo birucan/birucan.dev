@@ -3,6 +3,7 @@
         "desktop":{
             "Intro":".exe",
             "TestApp":".exe",
+            "Resume":"pdf",
             "Demos":{
                 "testFolder2":{
                     "Test":".exe"

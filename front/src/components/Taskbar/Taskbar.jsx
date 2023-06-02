@@ -1,10 +1,10 @@
 import React, { useState } from "react";
+import { useRecoilState } from "recoil";
+import { currentWindowState } from "../../State/global";
 
-export default function Taskbar({
-  activeWindows,
-  handleMinimize,
-  clickWindow,
-}) {
+const Taskbar = ({ handleMinimize, clickWindow }) => {
+  const [activeWindows, setActiveWindows] = useRecoilState(currentWindowState);
+
   const sunk = {
     backgroundColor: "#b0b0b0",
     boxShadow: "inset -1px -1px #ffffff, inset -2px -2px #dfdfdf",
@@ -48,7 +48,10 @@ export default function Taskbar({
             }}
           >
             <img
-              style={{ padding: "0px 8px 0px 0px", margin: "0px 0px 0px 0px" }}
+              style={{
+                padding: "0px 8px 0px 0px",
+                margin: "0px 0px 0px 0px",
+              }}
               height={24}
               width={24}
               alt=""
@@ -85,6 +88,8 @@ export default function Taskbar({
                 >
                   <img
                     style={{
+                      maxHeight: "24px",
+                      maxWidth: "24px",
                       padding: "0px 0px 0px 0px",
                       margin: "0px 0px 0px 0px",
                     }}
@@ -103,4 +108,5 @@ export default function Taskbar({
       </div>
     </div>
   );
-}
+};
+export default Taskbar;

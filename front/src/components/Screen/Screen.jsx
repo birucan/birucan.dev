@@ -8,44 +8,17 @@ import { useRecoilState } from "recoil";
 import { currentWindowState } from "../../State/global";
 const Screen = () => {
   const [activeWindows, setActiveWindows] = useRecoilState(currentWindowState);
-  // const [activeWindows, setActiveWindows] = useState([
-  //   {
-  //     id: 1,
-  //     window: <IntroWindow key={Math.random()} />,
-  //     zIndex: 1,
-  //     currentTop: false,
-  //     icon: "icons/intro.png",
-  //     title: "Intro",
-  //     minimized: false,
-  //     initHeight: 200,
-  //     initWidth: 200,
-  //     initX: 50,
-  //     initY: 20,
-  //   },
-  //   {
-  //     id: 2,
-  //     window: <ResumeDisplay key={Math.random()} />,
-  //     zIndex: 2,
-  //     currentTop: true,
-  //     title: "resume",
-  //     icon: "icons/textFile.png",
-  //     minimized: false,
-  //     initHeight: 800,
-  //     initWidth: 700,
-  //     initX: 300,
-  //     initY: 50,
-  //   },
-  // ]);
-  const [windowNum, setWindowNum] = useState(2);
+
+  //const [windowNum, setWindowNum] = useState(2);
   const [windowRender, setWindowRender] = useState([]);
   const [updateState, setUpdateState] = useState(Math.random());
 
-  const update = () => {
+  const toggleRender = () => {
     setUpdateState(Math.random());
   };
 
   const addWindow = (newWindow) => {
-    setWindowNum(windowNum + 1);
+    //setWindowNum(windowNum + 1);
     setActiveWindows(
       activeWindows.map((window) => {
         return {
@@ -58,9 +31,9 @@ const Screen = () => {
       })
     );
     setActiveWindows(...activeWindows, {
-      id: windowNum,
+      id: activeWindows.length,
       window: newWindow,
-      zIndex: windowNum,
+      zIndex: activeWindows.length,
       currentTop: true,
       // title: title,
       // initHeight: initHeight,
@@ -68,12 +41,12 @@ const Screen = () => {
       // initX: initX,
       // initY: initY,
     });
-    update();
+    toggleRender();
   };
 
   const closeWindow = (id, e) => {
     e.stopPropagation();
-    setWindowNum(windowNum - 1);
+    //setWindowNum(activeWindows.length - 1);
 
     let delElement;
 
@@ -83,7 +56,7 @@ const Screen = () => {
           delElement = window;
           return window;
         } else {
-          if (window.zIndex > windowNum) {
+          if (window.zIndex > activeWindows.length) {
             return {
               ...window,
               id: window.id,
@@ -99,16 +72,20 @@ const Screen = () => {
     );
 
     setActiveWindows(activeWindows.filter((item) => item !== delElement));
-    update();
+    toggleRender();
   };
 
   const clickWindow = (id, oldZIndex) => {
     setActiveWindows(
       activeWindows.map((window) => {
         if (window.id === id) {
-          return { ...window, zIndex: windowNum, currentTop: true };
+          return {
+            ...window,
+            zIndex: activeWindows.length,
+            currentTop: true,
+          };
         } else {
-          if (window.zIndex === windowNum) {
+          if (window.zIndex === activeWindows.length) {
             return { ...window, zIndex: oldZIndex, currentTop: false };
           } else {
             return { ...window, currentTop: false };
@@ -116,8 +93,7 @@ const Screen = () => {
         }
       })
     );
-
-    update();
+    toggleRender();
   };
 
   const handleMinimize = (id) => {
@@ -135,7 +111,7 @@ const Screen = () => {
       })
     );
 
-    update();
+    toggleRender();
   };
 
   useEffect(() => {
@@ -165,7 +141,7 @@ const Screen = () => {
         );
       })
     );
-  }, [updateState, windowNum]);
+  }, [updateState, activeWindows.length]);
 
   return (
     <>
@@ -178,7 +154,7 @@ const Screen = () => {
         }}
       >
         {windowRender}
-        <Desktop addWindow={addWindow} />
+        <Desktop />
       </div>
       <Taskbar
         activeWindows={activeWindows}

@@ -2,6 +2,8 @@ import { WindowType, validTypesEnum } from "../../../types";
 import { currentWindowState } from "../../../State/global";
 import IntroWindow from "../IntroWindow/IntroWindow";
 import { getRecoil, setRecoil } from "recoil-nexus";
+import PDFDisplay from "../ResumeDisplay/ResumeDisplay";
+import TestApp from "../TestApp/TestApp";
 
 export const fileMap = new Map<string, Partial<WindowType>>();
 //folders
@@ -32,16 +34,32 @@ fileMap.set("TestApp", {
   type: validTypesEnum.EXECUTABLE,
   id: 1,
   dir: "../Applications/TestApp/TestApp",
-  window: <IntroWindow />,
+  window: <TestApp />,
   /*zIndex:1,*/ currentTop: false,
-  icon: "icons/question.png",
-  title: "Intro",
+  icon: "icons/cowboy.png",
+  title: "SuperSeriousTest.com",
   minimized: false,
   initHeight: 200,
   initWidth: 200,
   initX: 20,
   initY: 20,
-});
+}),
+  fileMap.set("Resume", {
+    type: validTypesEnum.PDF,
+    id: 1,
+    dir: "../Applications/TestApp/TestApp",
+    window: (
+      <PDFDisplay pdf="https://s3.amazonaws.com/birucan.dev/Tomas+Kavanagh+Resume.pdf" />
+    ),
+    /*zIndex:1,*/ currentTop: false,
+    icon: "icons/textFile.png",
+    title: "PDF Viewer",
+    minimized: false,
+    initHeight: 800,
+    initWidth: 700,
+    initX: 20,
+    initY: 20,
+  });
 
 export const initMap = () => {
   console.log("todo");
@@ -65,6 +83,21 @@ export const addFileToFolder = (fileKey, folderKey) => {
 
 export const openFile = (file: Partial<WindowType>) => {
   const currWind = getRecoil(currentWindowState);
-
-  setRecoil(currentWindowState, [...currWind, file as WindowType]);
+  const newWindowState = currWind.map((window) => {
+    return {
+      ...window,
+      id: window.id,
+      window: window.window,
+      zIndex: window.zIndex ? window.zIndex : currWind.length,
+      minimized: false,
+      currentTop: false,
+    };
+  });
+  const newFile = {
+    ...file,
+    id: currWind.length + 1,
+    zIndex: currWind.length + 1,
+    currentTop: true,
+  };
+  setRecoil(currentWindowState, [...newWindowState, newFile as WindowType]);
 };

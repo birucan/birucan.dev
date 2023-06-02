@@ -7,6 +7,7 @@ import {
   openFile,
   fileMap,
 } from "../Applications/utils/fileManager";
+import { validTypesEnum } from "../../types";
 
 const Desktop = () => {
   // eslint-disable-next-line @typescript-eslint/no-var-requires, no-undef
@@ -43,6 +44,7 @@ const Desktop = () => {
                 textAlign: "center",
                 flexDirection: "column",
                 alignItems: "center",
+                zIndex: 0,
               }}
               onDoubleClick={() => {
                 openFile(getFile(item));
@@ -53,8 +55,7 @@ const Desktop = () => {
                 width={32}
                 alt=""
                 src={
-                  getFile(item).type === "folder" &&
-                  getFile(item).icon === "default"
+                  getFile(item).type === validTypesEnum.FOLDER
                     ? "icons/folder.png"
                     : getFile(item).icon
                 }

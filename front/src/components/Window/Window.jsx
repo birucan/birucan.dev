@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useEffect } from "react";
 import { Rnd } from "react-rnd";
 
 //
@@ -104,6 +104,7 @@ export default function Window({
             display: "flex",
             flexDirection: "row",
             alignItems: "center",
+            maxWidth: size.width - 100,
           }}
         >
           <img
@@ -113,7 +114,10 @@ export default function Window({
             alt=""
             src={icon}
           />
-          <div className="title-bar-text"> {title}</div>
+          <div className="title-bar-text" style={{ textOverflow: "ellipsis" }}>
+            {" "}
+            {title}
+          </div>
         </div>
 
         <div
