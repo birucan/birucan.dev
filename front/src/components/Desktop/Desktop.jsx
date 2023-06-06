@@ -21,8 +21,6 @@ const Desktop = () => {
       >
         {desktop.map((item) => {
           const obj = getFile(item);
-
-          console.log(obj.title, obj.icon);
           const src =
             obj.type === ValidTypeEnum.FOLDER ? "icons/folder.png" : obj.icon;
           return (
@@ -36,9 +34,9 @@ const Desktop = () => {
                 color: "initial",
                 textDecoration: "none",
                 padding: "1px 7px 2px initial",
-                margin: "3px",
+                margin: "3px 0px 10px 0px",
                 width: "52px",
-                height: "58px",
+                minHeight: "58px",
                 textAlign: "center",
                 flexDirection: "column",
                 alignItems: "center",
@@ -53,8 +51,7 @@ const Desktop = () => {
                 style={{
                   maxHeight: 22,
                   padding: "2px 3px",
-                  maxWidth: "100%",
-                  overflow: "hidden",
+                  whiteSpace: "initial",
                   display: "inline-block",
                   position: "absolute",
                   marginTop: 2,

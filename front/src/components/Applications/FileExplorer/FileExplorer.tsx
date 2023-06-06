@@ -42,7 +42,7 @@ const FileExplorer = ({
                 zIndex: 0,
               }}
               onDoubleClick={() => {
-                //openFile(getFile(item));
+                openFile(getFile(item));
               }}
             >
               <img
