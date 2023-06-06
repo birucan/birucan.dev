@@ -1,7 +1,7 @@
 import { ReactElement } from "react";
 import { JsxElement } from "typescript";
 
-export enum validTypesEnum {
+export enum ValidTypeEnum {
   EXECUTABLE = ".exe",
   JPG = ".jpg",
   PNG = ".png",
@@ -11,11 +11,11 @@ export enum validTypesEnum {
 }
 
 export type WindowType = {
-  type: validTypesEnum;
+  type: ValidTypeEnum;
   window: ReactElement;
   id: number;
   zIndex?: number;
-  dir?: string;
+  dir?: FileEnum[];
   currentTop: boolean;
   icon: string;
   title: string;
@@ -25,19 +25,14 @@ export type WindowType = {
   initX: number;
   initY: number;
 };
-
-export type Folder = {
-  type: validTypesEnum.FOLDER;
-  window: ReactElement;
-  id: number;
-  zIndex?: number;
-  dir?: string;
-  currentTop: boolean;
-  icon: string;
-  title: string;
-  minimized: boolean;
-  initHeight: number;
-  initWidth: number;
-  initX: number;
-  initY: number;
-};
+export enum FileEnum {
+  root,
+  desktop,
+  Intro,
+  testFolder2,
+  testFolder,
+  ImALoop,
+  Demos,
+  TestApp,
+  Resume,
+}

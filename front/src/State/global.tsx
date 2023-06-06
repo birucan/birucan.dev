@@ -1,7 +1,7 @@
 import { atom } from "recoil";
 import IntroWindow from "../components/Applications/IntroWindow/IntroWindow";
 import PDFDisplay from "../components/Applications/ResumeDisplay/ResumeDisplay";
-import { WindowType, validTypesEnum } from "../types";
+import { WindowType, ValidTypeEnum } from "../types";
 export enum keyList {
   CURRENT_WINDOWS = "currentWindows",
 }
@@ -11,7 +11,7 @@ export const currentWindowState = atom<WindowType[]>({
   default: [
     {
       id: 1,
-      type: validTypesEnum.EXECUTABLE,
+      type: ValidTypeEnum.EXECUTABLE,
       window: <IntroWindow key={Math.random()} />,
       zIndex: 1,
       currentTop: false,
@@ -25,7 +25,7 @@ export const currentWindowState = atom<WindowType[]>({
     },
     {
       id: 2,
-      type: validTypesEnum.PDF,
+      type: ValidTypeEnum.PDF,
       window: (
         <PDFDisplay
           pdf="https://s3.amazonaws.com/birucan.dev/Tomas+Kavanagh+Resume.pdf"

@@ -1,11 +1,12 @@
 import React, { useState } from "react";
-
-import { getFile, openFile, fileMap } from "../Applications/utils/fileManager";
-import { ValidTypeEnum, FileEnum } from "../../types";
-
-const Desktop = () => {
-  const desktop = fileMap[FileEnum.desktop].dir;
-
+import "98.css";
+import { getFile, openFile } from "../utils/fileManager";
+import { FileEnum, ValidTypeEnum } from "../../../types";
+const FileExplorer = ({
+  currentFolder = [FileEnum.root],
+}: {
+  currentFolder?: FileEnum[];
+}) => {
   return (
     <>
       <div
@@ -19,12 +20,8 @@ const Desktop = () => {
           alignContent: "flex-start",
         }}
       >
-        {desktop.map((item) => {
+        {currentFolder.map((item) => {
           const obj = getFile(item);
-
-          console.log(obj.title, obj.icon);
-          const src =
-            obj.type === ValidTypeEnum.FOLDER ? "icons/folder.png" : obj.icon;
           return (
             <div
               style={{
@@ -45,10 +42,19 @@ const Desktop = () => {
                 zIndex: 0,
               }}
               onDoubleClick={() => {
-                openFile(obj);
+                //openFile(getFile(item));
               }}
             >
-              <img height={32} width={32} alt="" src={src} />
+              <img
+                height={32}
+                width={32}
+                alt=""
+                src={
+                  obj.type === ValidTypeEnum.FOLDER
+                    ? "icons/folder.png"
+                    : obj.icon
+                }
+              />
               <div
                 style={{
                   maxHeight: 22,
@@ -70,4 +76,5 @@ const Desktop = () => {
     </>
   );
 };
-export default Desktop;
+FileExplorer.displayName = "Intro";
+export default FileExplorer;

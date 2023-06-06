@@ -5,12 +5,25 @@ const TestApp = () => {
   const [cowboyState, setCowboyState] = useState("");
 
   return (
-    <>
-      <p style={{ textAlign: "center", overflow: true }}>{cowboyState}</p>
-      <br />
-      <br />
+    <div style={{ justifyContent: "center", position: "relative" }}>
+      <div
+        style={{
+          textAlign: "center",
+          overflowY: "scroll",
+          height: "100px",
+          maxHeight: "100px",
+        }}
+      >
+        <p style={{ textAlign: "center" }}>{cowboyState}</p>
+      </div>
 
-      <div className="field-row" style={{ justifyContent: "center" }}>
+      <div
+        className="field-row"
+        style={{
+          justifyContent: "center",
+          marginTop: "20%",
+        }}
+      >
         <button
           style={{ left: 100 }}
           onClick={() => {
@@ -29,7 +42,7 @@ const TestApp = () => {
           Add Cow 🐄
         </button>
       </div>
-    </>
+    </div>
   );
 };
 TestApp.displayName = "Test";
