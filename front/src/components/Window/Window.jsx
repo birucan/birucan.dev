@@ -20,6 +20,7 @@ export default function Window({
   handleMinimize,
   handleClose,
   icon,
+  disableResize = false,
 }) {
   const [pos, setPos] = useState({ x: xPos, y: yPos });
   const [size, setSize] = useState({ height: initHeight, width: initWidth });
@@ -84,6 +85,7 @@ export default function Window({
       minWidth={initWidth}
       minHeight={initHeight}
       disableDragging={!canDrag}
+      disableResize={disableResize}
       style={{
         ...style,
         padding: "2px",
@@ -104,7 +106,7 @@ export default function Window({
             display: "flex",
             flexDirection: "row",
             alignItems: "center",
-            maxWidth: size.width - 100,
+            maxWidth: size.width - 80,
           }}
         >
           <img
@@ -115,7 +117,7 @@ export default function Window({
             src={icon}
           />
           <div className="title-bar-text" style={{ textOverflow: "ellipsis" }}>
-            {" "}
+            {" "}
             {title}
           </div>
         </div>

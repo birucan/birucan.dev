@@ -5,9 +5,9 @@ const IntroWindow = () => {
   return (
     <>
       <p style={{ textAlign: "center" }}>
-        Hello I'm Tomas Kavanagh, this will be my portafolio site, it's meant to
-        immitate a functional windows98 desktop, currently a work in progress,
-        for now you can visit my github
+        Hello I'm Tomás Kavanagh, this will be my portafolio site, it's meant to
+        immitate a functional windows98 desktop. Everythign in the desktop can
+        be clicked and used, more to come as I work on it.
       </p>
       <br />
       <br />

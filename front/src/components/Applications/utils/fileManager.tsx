@@ -5,6 +5,8 @@ import { getRecoil, setRecoil } from "recoil-nexus";
 import PDFDisplay from "../ResumeDisplay/ResumeDisplay";
 import TestApp from "../TestApp/TestApp";
 import FileExplorer from "../FileExplorer/FileExplorer";
+import PasswordCheck from "../PasswordCheck/PasswordCheck";
+import PictureView from "../PictureView/PictureView";
 
 export const fileMap = {
   //folders
@@ -18,29 +20,64 @@ export const fileMap = {
     icon: "icons/desktop.png",
     dir: [
       FileEnum.Intro,
-      FileEnum.Demos,
+      FileEnum.Portafolio,
       FileEnum.testFolder2,
       FileEnum.Resume,
+      FileEnum.Pictures,
       FileEnum.TestApp,
     ],
+  },
+  [FileEnum.Pictures]: {
+    title: "Pictures",
+    type: ValidTypeEnum.FOLDER,
+    icon: "icons/camera.png",
+    dir: [
+      FileEnum.cat,
+      FileEnum.cat2,
+      FileEnum.brooklyn,
+      FileEnum.PasswordCheck,
+    ],
+  },
+  [FileEnum.PasswordCheck]: {
+    title: "SecretPictures",
+    type: ValidTypeEnum.EXECUTABLE,
+    icon: "icons/padlock.png",
+    window: <PasswordCheck file={FileEnum.SecretPictures} />,
+    minimized: false,
+    initHeight: 200,
+    initWidth: 200,
+    initX: 20,
+    initY: 20,
+    dir: [FileEnum.SecretPictures],
+  },
+  [FileEnum.SecretPictures]: {
+    title: "SecretPictures",
+    type: ValidTypeEnum.FOLDER,
+    icon: "icons/camera.png",
+    dir: [],
   },
   [FileEnum.testFolder]: {
     title: "Folder1",
     type: ValidTypeEnum.FOLDER,
+    icon: "icons/folder.png",
     dir: [FileEnum.ImALoop],
   },
   [FileEnum.ImALoop]: {
     title: "ImALoop",
     type: ValidTypeEnum.FOLDER,
+    icon: "icons/folder.png",
     dir: [FileEnum.testFolder],
   },
   [FileEnum.testFolder2]: {
     title: "Folder2",
     type: ValidTypeEnum.FOLDER,
+    icon: "icons/folder.png",
     dir: [FileEnum.Resume, FileEnum.testFolder],
   },
-  [FileEnum.Demos]: {
-    title: "Demos",
+  [FileEnum.Portafolio]: {
+    title: "Portafolio",
+    icon: "icons/folderFilled.png",
+
     type: ValidTypeEnum.FOLDER,
     dir: [],
   },
@@ -65,7 +102,7 @@ export const fileMap = {
     icon: "icons/cowboy.png",
     title: "Serious Test",
     minimized: false,
-    initHeight: 200,
+    initHeight: 225,
     initWidth: 200,
     initX: 20,
     initY: 20,
@@ -81,6 +118,50 @@ export const fileMap = {
     minimized: false,
     initHeight: 800,
     initWidth: 700,
+    initX: 20,
+    initY: 20,
+  },
+
+  //pics
+  [FileEnum.brooklyn]: {
+    type: ValidTypeEnum.JPG,
+    window: (
+      <PictureView src="https://s3.amazonaws.com/birucan.dev/gallery/brooklyn.jpg" />
+    ),
+    /*zIndex:1,*/ currentTop: false,
+    icon: "icons/image.png",
+    title: "brooklyn.jpg",
+    minimized: false,
+    initHeight: 468,
+    initWidth: 262,
+    initX: 20,
+    initY: 20,
+  },
+  [FileEnum.cat]: {
+    type: ValidTypeEnum.JPG,
+    window: (
+      <PictureView src="https://s3.amazonaws.com/birucan.dev/gallery/cat.jpg" />
+    ),
+    /*zIndex:1,*/ currentTop: false,
+    icon: "icons/image.png",
+    title: "cat.jpg",
+    minimized: false,
+    initHeight: 370,
+    initWidth: 600,
+    initX: 20,
+    initY: 20,
+  },
+  [FileEnum.cat2]: {
+    type: ValidTypeEnum.JPG,
+    window: (
+      <PictureView src="https://s3.amazonaws.com/birucan.dev/gallery/cat2.jpg" />
+    ),
+    /*zIndex:1,*/ currentTop: false,
+    icon: "icons/image.png",
+    title: "cat2.jpg",
+    minimized: false,
+    initHeight: 480,
+    initWidth: 353,
     initX: 20,
     initY: 20,
   },
@@ -108,7 +189,7 @@ export const openFile = (file: Partial<WindowType>): void => {
     });
     const newFile = {
       ...file,
-      title: "File Explorer",
+      title: file.title ? file.title : "File Explorer",
       window: <FileExplorer currentFolder={file.dir ? file.dir : undefined} />,
       id: currWind.length + 1,
       zIndex: currWind.length + 1,
@@ -118,7 +199,6 @@ export const openFile = (file: Partial<WindowType>): void => {
       initX: 20 + Math.random() * 20,
       initY: 20 + Math.random() * 20,
       minimized: false,
-      icon: file.icon ? file.icon : "icons/folder.png",
     };
     setRecoil(currentWindowState, [...newWindowState, newFile as WindowType]);
   } else {

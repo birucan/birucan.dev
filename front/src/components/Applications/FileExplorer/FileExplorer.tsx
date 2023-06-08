@@ -7,14 +7,19 @@ const FileExplorer = ({
 }: {
   currentFolder?: FileEnum[];
 }) => {
+  const [currentSelected, setCurrentSelected] = useState<string | FileEnum>();
+
   return (
     <>
       <div
+        onClick={() => {
+          setCurrentSelected("");
+        }}
         style={{
           paddingLeft: 10,
           paddingRight: 10,
           display: "flex",
-          flexFlow: "column wrap",
+          flexFlow: "row",
           height: "100%",
           width: "100%",
           alignContent: "flex-start",
@@ -41,6 +46,10 @@ const FileExplorer = ({
                 alignItems: "center",
                 zIndex: 0,
               }}
+              onClick={(e) => {
+                e.stopPropagation();
+                setCurrentSelected(item);
+              }}
               onDoubleClick={() => {
                 openFile(getFile(item));
               }}
@@ -49,11 +58,13 @@ const FileExplorer = ({
                 height={32}
                 width={32}
                 alt=""
-                src={
-                  obj.type === ValidTypeEnum.FOLDER
-                    ? "icons/folder.png"
-                    : obj.icon
-                }
+                src={obj.icon ? obj.icon : "icons/folder.png"}
+                style={{
+                  filter:
+                    item === currentSelected
+                      ? "hue-rotate(180deg) opacity(0.5)"
+                      : "initial",
+                }}
               />
               <div
                 style={{
@@ -65,6 +76,10 @@ const FileExplorer = ({
                   position: "absolute",
                   marginTop: 2,
                   top: 33,
+                  filter:
+                    item === currentSelected
+                      ? "hue-rotate(180deg) opacity(0.75)"
+                      : "initial",
                 }}
               >
                 {obj.title}

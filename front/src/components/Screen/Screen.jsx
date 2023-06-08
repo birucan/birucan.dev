@@ -6,6 +6,7 @@ import Desktop from "../Desktop/Desktop";
 import PDFDisplay from "../Applications/ResumeDisplay/ResumeDisplay";
 import { useRecoilState } from "recoil";
 import { currentWindowState } from "../../State/global";
+import { ValidTypeEnum } from "../../types";
 const Screen = () => {
   const [activeWindows, setActiveWindows] = useRecoilState(currentWindowState);
 
@@ -15,33 +16,6 @@ const Screen = () => {
 
   const toggleRender = () => {
     setUpdateState(Math.random());
-  };
-
-  const addWindow = (newWindow) => {
-    //setWindowNum(windowNum + 1);
-    setActiveWindows(
-      activeWindows.map((window) => {
-        return {
-          ...window,
-          id: window.id,
-          window: window.window,
-          zIndex: window.zIndex,
-          currentTop: false,
-        };
-      })
-    );
-    setActiveWindows(...activeWindows, {
-      id: activeWindows.length,
-      window: newWindow,
-      zIndex: activeWindows.length,
-      currentTop: true,
-      // title: title,
-      // initHeight: initHeight,
-      // initWidth: initWidth,
-      // initX: initX,
-      // initY: initY,
-    });
-    toggleRender();
   };
 
   const closeWindow = (id, e) => {
