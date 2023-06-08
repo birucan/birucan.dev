@@ -32,6 +32,8 @@ export const fileMap = {
     type: ValidTypeEnum.FOLDER,
     icon: "icons/camera.png",
     dir: [
+      FileEnum.linkedin,
+      FileEnum.paella,
       FileEnum.cat,
       FileEnum.cat2,
       FileEnum.brooklyn,
@@ -54,7 +56,7 @@ export const fileMap = {
     title: "SecretPictures",
     type: ValidTypeEnum.FOLDER,
     icon: "icons/camera.png",
-    dir: [],
+    dir: [FileEnum.spooki],
   },
   [FileEnum.testFolder]: {
     title: "Folder1",
@@ -165,6 +167,62 @@ export const fileMap = {
     initX: 20,
     initY: 20,
   },
+  [FileEnum.linkedin]: {
+    type: ValidTypeEnum.JPG,
+    window: (
+      <PictureView src="https://s3.amazonaws.com/birucan.dev/gallery/lnkinPP.jpg" />
+    ),
+    /*zIndex:1,*/ currentTop: false,
+    icon: "icons/image.png",
+    title: "linkedin.jpg",
+    minimized: false,
+    initHeight: 400,
+    initWidth: 400,
+    initX: 20,
+    initY: 20,
+  },
+  [FileEnum.paella]: {
+    type: ValidTypeEnum.JPG,
+    window: (
+      <PictureView src="https://s3.amazonaws.com/birucan.dev/gallery/paella.jpg" />
+    ),
+    /*zIndex:1,*/ currentTop: false,
+    icon: "icons/image.png",
+    title: "paella.jpg",
+    minimized: false,
+    initHeight: 468,
+    initWidth: 263,
+    initX: 20,
+    initY: 20,
+  },
+  [FileEnum.catan]: {
+    type: ValidTypeEnum.JPG,
+    window: (
+      <PictureView src="https://s3.amazonaws.com/birucan.dev/gallery/catan.jpg" />
+    ),
+    /*zIndex:1,*/ currentTop: false,
+    icon: "icons/image.png",
+    title: "catan.jpg",
+    minimized: false,
+    initHeight: 416,
+    initWidth: 312,
+    initX: 20,
+    initY: 20,
+  },
+  [FileEnum.spooki]: {
+    type: ValidTypeEnum.JPG,
+    window: (
+      <PictureView src="https://s3.amazonaws.com/birucan.dev/gallery/spooki.jpg" />
+    ),
+    /*zIndex:1,*/ currentTop: false,
+    icon: "icons/image.png",
+    title: "spooki.jpg",
+    minimized: false,
+    initHeight: 560,
+    initWidth: 312,
+    initX: 20,
+    initY: 20,
+  },
 };
 
 //files
@@ -173,7 +231,7 @@ export const initMap = () => {
   console.log("todo");
 };
 
-export const getFile = (key: FileEnum): Partial<WindowType> => {
+export const getFile = (key: keyof typeof FileEnum): Partial<WindowType> => {
   return fileMap[key];
 };
 export const openFile = (file: Partial<WindowType>): void => {

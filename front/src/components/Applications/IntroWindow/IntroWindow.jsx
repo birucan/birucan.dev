@@ -6,7 +6,7 @@ const IntroWindow = () => {
     <>
       <p style={{ textAlign: "center" }}>
         Hello I'm Tomás Kavanagh, this will be my portafolio site, it's meant to
-        immitate a functional windows98 desktop. Everythign in the desktop can
+        immitate a functional windows98 desktop. Everything in the desktop can
         be clicked and used, more to come as I work on it.
       </p>
       <br />

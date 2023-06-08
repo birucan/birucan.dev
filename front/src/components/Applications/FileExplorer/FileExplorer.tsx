@@ -19,10 +19,11 @@ const FileExplorer = ({
           paddingLeft: 10,
           paddingRight: 10,
           display: "flex",
-          flexFlow: "row",
+          flexFlow: "wrap",
           height: "100%",
           width: "100%",
           alignContent: "flex-start",
+          overflow: "hidden",
         }}
       >
         {currentFolder.map((item) => {
@@ -44,6 +45,7 @@ const FileExplorer = ({
                 textAlign: "center",
                 flexDirection: "column",
                 alignItems: "center",
+
                 zIndex: 0,
               }}
               onClick={(e) => {
@@ -71,6 +73,7 @@ const FileExplorer = ({
                   maxHeight: 22,
                   padding: "2px 3px",
                   maxWidth: "100%",
+                  textOverflow: "ellipsis",
                   overflow: "hidden",
                   display: "inline-block",
                   position: "absolute",
