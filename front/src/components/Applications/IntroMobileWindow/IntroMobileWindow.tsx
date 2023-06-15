@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "98.css";
 
-const IntroWindow = () => {
+const IntroMobileWindow = () => {
   return (
     <div
       style={{
@@ -41,8 +41,13 @@ const IntroWindow = () => {
           width={16}
           src="logo192.png"
         />{" "}
-        React and everything in the desktop can be clicked and used, more to
-        come as I work on it.
+        React and everything in the desktop can be clicked and used.
+        <b>
+          {" "}
+          I believe you are on a mobile device, so this is a very simple version
+          of the site, If you want to see the full site, please visit birucan.cc
+          on a desktop!
+        </b>
       </p>
       <br />
       <br />
@@ -65,6 +70,7 @@ const IntroWindow = () => {
 
           {"   Resume"}
         </button>
+
         <button
           style={{
             display: "flex",
@@ -72,7 +78,7 @@ const IntroWindow = () => {
             alignItems: "center",
           }}
           onClick={() => {
-            window.open("https://github.com/birucan");
+            window.open("https://linkedin.com/in/tomas-kavanagh");
           }}
         >
           <img height={16} width={16} src="icons/github.png" />
@@ -86,7 +92,7 @@ const IntroWindow = () => {
             alignItems: "center",
           }}
           onClick={() => {
-            window.open("https://linkedin.com/in/tomas-kavanagh");
+            window.open("https://github.com/birucan");
           }}
         >
           <img height={16} width={16} src="icons/linkedin.png" />
@@ -97,5 +103,5 @@ const IntroWindow = () => {
     </div>
   );
 };
-IntroWindow.displayName = "Intro";
-export default IntroWindow;
+IntroMobileWindow.displayName = "IntroMobileWindow";
+export default IntroMobileWindow;

@@ -14,7 +14,7 @@ export type WindowType = {
   type: ValidTypeEnum;
   window: ReactElement;
   id: number;
-  zIndex?: number;
+  zIndex: number;
   dir?: FileEnum[];
   currentTop: boolean;
   icon: string;
@@ -49,4 +49,7 @@ export enum FileEnum {
   //projects
   NEAT = "NEAT",
   smwAgent = "smwAgent",
+  birucancc = "birucancc",
+  threejs = "threejs",
+  rusty = "rusty",
 }

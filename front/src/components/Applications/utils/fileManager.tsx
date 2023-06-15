@@ -85,7 +85,13 @@ export const fileMap = {
     icon: "icons/folderFilled.png",
 
     type: ValidTypeEnum.FOLDER,
-    dir: [FileEnum.NEAT, FileEnum.smwAgent],
+    dir: [
+      FileEnum.birucancc,
+      FileEnum.NEAT,
+      FileEnum.smwAgent,
+      FileEnum.threejs,
+      FileEnum.rusty,
+    ],
   },
   //files
   [FileEnum.Intro]: {
@@ -96,7 +102,7 @@ export const fileMap = {
     title: "Intro",
     minimized: false,
     initHeight: 440,
-    initWidth: 250,
+    initWidth: 285,
     initX: 20,
     initY: 20,
   },
@@ -172,6 +178,80 @@ export const fileMap = {
     title: "SMW Agent",
     minimized: false,
     initHeight: 500,
+    initWidth: 700,
+    initX: 20,
+    initY: 20,
+  },
+  [FileEnum.birucancc]: {
+    type: ValidTypeEnum.EXECUTABLE,
+    window: (
+      <ProjectView
+        images={[
+          "https://s3.amazonaws.com/birucan.dev/gallery/cc1.png",
+          "https://s3.amazonaws.com/birucan.dev/gallery/cc2.png",
+          "https://s3.amazonaws.com/birucan.dev/gallery/cc3.png",
+          "https://s3.amazonaws.com/birucan.dev/gallery/cc4.png",
+        ]}
+        title="birucan.cc"
+        text="If you're reading this, you are likely already on the site. This potafolio site was built from scratch using React and Recoil. It has a file managment system that uses an enum keyed map to get the window information, new apps or files can be added with just a few lines added to this map. Recoil is used to manage the active windows, their order and state. Credit to the 98.css project for providing some of the styles."
+        hasSourceCode
+        sourceCode="https://github.com/birucan/birucan.dev/"
+        isHosted={true}
+        hostLink="https://birucan.cc/"
+      />
+    ),
+    currentTop: false,
+    icon: "favicon.ico",
+    title: "birucan.cc",
+    minimized: false,
+    initHeight: 500,
+    initWidth: 700,
+    initX: 20,
+    initY: 20,
+  },
+  [FileEnum.threejs]: {
+    type: ValidTypeEnum.EXECUTABLE,
+    window: (
+      <ProjectView
+        images={[
+          "https://s3.amazonaws.com/birucan.dev/gallery/three1.png",
+          "https://s3.amazonaws.com/birucan.dev/gallery/three2.jpg",
+          "https://s3.amazonaws.com/birucan.dev/gallery/three3.jpg",
+          "https://s3.amazonaws.com/birucan.dev/gallery/three4.png",
+        ]}
+        title="Three.js"
+        text="Small Three.js projects done during a masters class about 3D Graphics."
+        hasSourceCode
+        sourceCode="https://gist.github.com/birucan/5dca1ac6c325a5df4fe030c0a2bc5bcf"
+        isHosted={false}
+      />
+    ),
+    currentTop: false,
+    icon: "icons/three.png",
+    title: "Three.js",
+    minimized: false,
+    initHeight: 500,
+    initWidth: 700,
+    initX: 20,
+    initY: 20,
+  },
+  [FileEnum.rusty]: {
+    type: ValidTypeEnum.EXECUTABLE,
+    window: (
+      <ProjectView
+        images={[]}
+        title="Rusty Chat"
+        text="Current project, currently working on a Rust backend and a react front to make a live chat app! demo coming soon"
+        hasSourceCode={false}
+        sourceCode="https://gist.github.com/birucan/5dca1ac6c325a5df4fe030c0a2bc5bcf"
+        isHosted={false}
+      />
+    ),
+    currentTop: false,
+    icon: "icons/rust.png",
+    title: "Rusty Chat",
+    minimized: false,
+    initHeight: 300,
     initWidth: 700,
     initX: 20,
     initY: 20,

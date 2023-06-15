@@ -7,6 +7,7 @@ import PDFDisplay from "../Applications/ResumeDisplay/ResumeDisplay";
 import { useRecoilState } from "recoil";
 import { currentWindowState } from "../../State/global";
 import { ValidTypeEnum } from "../../types";
+import IntroMobileWindow from "../Applications/IntroMobileWindow/IntroMobileWindow";
 const Screen = () => {
   const [activeWindows, setActiveWindows] = useRecoilState(currentWindowState);
 
@@ -48,6 +49,22 @@ const Screen = () => {
     setActiveWindows(activeWindows.filter((item) => item !== delElement));
     toggleRender();
   };
+
+  const [width, setWidth] = useState(Window.innerWidth);
+  const [height, setHeight] = useState(Window.height);
+
+  function handleWindowSizeChange() {
+    setWidth(window.innerWidth);
+    setHeight(window.height);
+  }
+  useEffect(() => {
+    window.addEventListener("resize", handleWindowSizeChange);
+    return () => {
+      window.removeEventListener("resize", handleWindowSizeChange);
+    };
+  }, []);
+
+  const isMobile = width <= 768;
 
   const clickWindow = (id, oldZIndex) => {
     setActiveWindows(
@@ -119,22 +136,53 @@ const Screen = () => {
 
   return (
     <>
-      <div
-        style={{
-          backgroundColor: "#008080",
-          minHeight: "100vh",
-          minWidth: "100vw",
-          overflow: "hidden",
-        }}
-      >
-        {windowRender}
-        <Desktop />
-      </div>
-      <Taskbar
-        activeWindows={activeWindows}
-        handleMinimize={handleMinimize}
-        clickWindow={clickWindow}
-      />
+      {isMobile ? (
+        <Window
+          zIndex={8}
+          id={Math.random()}
+          style={{
+            zIndex: 8,
+            visibility: "visible",
+          }}
+          content={<IntroMobileWindow />}
+          title={"Mobile Intro"}
+          key={Math.random()}
+          initHeight={700}
+          initWidth={width}
+          xPos={0}
+          yPos={0}
+          clickHandle={() => {
+            /*cant move window in mobile*/
+          }}
+          handleClose={() => {
+            /*cant close window in mobile*/
+          }}
+          handleMinimize={() => {
+            /*cant minimize window in mobile*/
+          }}
+          active={true}
+          icon={"favicon.ico"}
+        />
+      ) : (
+        <>
+          <div
+            style={{
+              backgroundColor: "#008080",
+              minHeight: "100vh",
+              minWidth: "100vw",
+              overflow: "hidden",
+            }}
+          >
+            {windowRender}
+            <Desktop />
+          </div>
+          <Taskbar
+            activeWindows={activeWindows}
+            handleMinimize={handleMinimize}
+            clickWindow={clickWindow}
+          />
+        </>
+      )}
     </>
   );
 };

@@ -14,7 +14,15 @@ export const currentWindowState = atom<WindowType[]>({
       id: 2,
       type: ValidTypeEnum.EXECUTABLE,
       window: (
-        <FileExplorer currentFolder={[FileEnum.NEAT, FileEnum.smwAgent]} />
+        <FileExplorer
+          currentFolder={[
+            FileEnum.birucancc,
+            FileEnum.NEAT,
+            FileEnum.smwAgent,
+            FileEnum.threejs,
+            FileEnum.rusty,
+          ]}
+        />
       ),
       zIndex: 2,
       currentTop: false,
@@ -36,7 +44,7 @@ export const currentWindowState = atom<WindowType[]>({
       title: "Intro",
       minimized: false,
       initHeight: 440,
-      initWidth: 250,
+      initWidth: 285,
       initX: 70,
       initY: 68,
     },
