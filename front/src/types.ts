@@ -46,4 +46,6 @@ export enum FileEnum {
   linkedin = "linkedin",
   paella = "paella",
   spooki = "spooki",
+  //projects
+  NEAT = "NEAT",
 }

@@ -7,6 +7,7 @@ import TestApp from "../TestApp/TestApp";
 import FileExplorer from "../FileExplorer/FileExplorer";
 import PasswordCheck from "../PasswordCheck/PasswordCheck";
 import PictureView from "../PictureView/PictureView";
+import ProjectView from "../ProjectView/ProjectView";
 
 export const fileMap = {
   //folders
@@ -36,9 +37,12 @@ export const fileMap = {
       FileEnum.paella,
       FileEnum.cat,
       FileEnum.cat2,
+      FileEnum.catan,
       FileEnum.brooklyn,
       FileEnum.PasswordCheck,
     ],
+    initHeight: 225,
+    initWidth: 200,
   },
   [FileEnum.PasswordCheck]: {
     title: "SecretPictures",
@@ -81,7 +85,7 @@ export const fileMap = {
     icon: "icons/folderFilled.png",
 
     type: ValidTypeEnum.FOLDER,
-    dir: [],
+    dir: [FileEnum.NEAT],
   },
   //files
   [FileEnum.Intro]: {
@@ -91,8 +95,8 @@ export const fileMap = {
     icon: "icons/intro.png",
     title: "Intro",
     minimized: false,
-    initHeight: 200,
-    initWidth: 200,
+    initHeight: 440,
+    initWidth: 250,
     initX: 20,
     initY: 20,
   },
@@ -100,7 +104,7 @@ export const fileMap = {
   [FileEnum.TestApp]: {
     type: ValidTypeEnum.EXECUTABLE,
     window: <TestApp />,
-    /*zIndex:1,*/ currentTop: false,
+    currentTop: false,
     icon: "icons/cowboy.png",
     title: "Serious Test",
     minimized: false,
@@ -114,11 +118,35 @@ export const fileMap = {
     window: (
       <PDFDisplay pdf="https://s3.amazonaws.com/birucan.dev/Tomas+Kavanagh+Resume.pdf" />
     ),
-    /*zIndex:1,*/ currentTop: false,
+    currentTop: false,
     icon: "icons/textFile.png",
     title: "Resume",
     minimized: false,
     initHeight: 800,
+    initWidth: 700,
+    initX: 20,
+    initY: 20,
+  },
+  [FileEnum.NEAT]: {
+    type: ValidTypeEnum.PDF,
+    window: (
+      <ProjectView
+        images={[
+          "https://s3.amazonaws.com/birucan.dev/gallery/projects/NEAT1.PNG",
+          "https://s3.amazonaws.com/birucan.dev/gallery/projects/NEAT2.jpg",
+        ]}
+        title="NEAT Python"
+        text="OOP Python implementation created based on a Java implementation, created as as a part of my final senior project, includes a debug GUI that displays the current neural net generated and let the user add nodes, connections and mutations"
+        hasSourceCode
+        sourceCode="https://github.com/birucan/NEAT_py"
+        isHosted={false}
+      />
+    ),
+    currentTop: false,
+    icon: "icons/python.png",
+    title: "NEAT Python",
+    minimized: false,
+    initHeight: 500,
     initWidth: 700,
     initX: 20,
     initY: 20,
@@ -130,7 +158,7 @@ export const fileMap = {
     window: (
       <PictureView src="https://s3.amazonaws.com/birucan.dev/gallery/brooklyn.jpg" />
     ),
-    /*zIndex:1,*/ currentTop: false,
+    currentTop: false,
     icon: "icons/image.png",
     title: "brooklyn.jpg",
     minimized: false,
@@ -144,7 +172,7 @@ export const fileMap = {
     window: (
       <PictureView src="https://s3.amazonaws.com/birucan.dev/gallery/cat.jpg" />
     ),
-    /*zIndex:1,*/ currentTop: false,
+    currentTop: false,
     icon: "icons/image.png",
     title: "cat.jpg",
     minimized: false,
@@ -158,7 +186,7 @@ export const fileMap = {
     window: (
       <PictureView src="https://s3.amazonaws.com/birucan.dev/gallery/cat2.jpg" />
     ),
-    /*zIndex:1,*/ currentTop: false,
+    currentTop: false,
     icon: "icons/image.png",
     title: "cat2.jpg",
     minimized: false,
@@ -172,7 +200,7 @@ export const fileMap = {
     window: (
       <PictureView src="https://s3.amazonaws.com/birucan.dev/gallery/lnkinPP.jpg" />
     ),
-    /*zIndex:1,*/ currentTop: false,
+    currentTop: false,
     icon: "icons/image.png",
     title: "linkedin.jpg",
     minimized: false,
@@ -186,7 +214,7 @@ export const fileMap = {
     window: (
       <PictureView src="https://s3.amazonaws.com/birucan.dev/gallery/paella.jpg" />
     ),
-    /*zIndex:1,*/ currentTop: false,
+    currentTop: false,
     icon: "icons/image.png",
     title: "paella.jpg",
     minimized: false,
@@ -200,7 +228,7 @@ export const fileMap = {
     window: (
       <PictureView src="https://s3.amazonaws.com/birucan.dev/gallery/catan.jpg" />
     ),
-    /*zIndex:1,*/ currentTop: false,
+    currentTop: false,
     icon: "icons/image.png",
     title: "catan.jpg",
     minimized: false,
@@ -214,7 +242,7 @@ export const fileMap = {
     window: (
       <PictureView src="https://s3.amazonaws.com/birucan.dev/gallery/spooki.jpg" />
     ),
-    /*zIndex:1,*/ currentTop: false,
+    currentTop: false,
     icon: "icons/image.png",
     title: "spooki.jpg",
     minimized: false,
@@ -223,12 +251,6 @@ export const fileMap = {
     initX: 20,
     initY: 20,
   },
-};
-
-//files
-
-export const initMap = () => {
-  console.log("todo");
 };
 
 export const getFile = (key: keyof typeof FileEnum): Partial<WindowType> => {
@@ -252,8 +274,8 @@ export const openFile = (file: Partial<WindowType>): void => {
       id: currWind.length + 1,
       zIndex: currWind.length + 1,
       currentTop: true,
-      initHeight: 200,
-      initWidth: 200,
+      initHeight: file.initHeight ? file.initHeight : 200,
+      initWidth: file.initWidth ? file.initWidth : 200,
       initX: 20 + Math.random() * 20,
       initY: 20 + Math.random() * 20,
       minimized: false,
