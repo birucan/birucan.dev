@@ -13,7 +13,9 @@ export const currentWindowState = atom<WindowType[]>({
     {
       id: 2,
       type: ValidTypeEnum.EXECUTABLE,
-      window: <FileExplorer currentFolder={[FileEnum.NEAT]} />,
+      window: (
+        <FileExplorer currentFolder={[FileEnum.NEAT, FileEnum.smwAgent]} />
+      ),
       zIndex: 2,
       currentTop: false,
       icon: "icons/folderFilled.png",

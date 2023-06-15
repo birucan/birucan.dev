@@ -48,4 +48,5 @@ export enum FileEnum {
   spooki = "spooki",
   //projects
   NEAT = "NEAT",
+  smwAgent = "smwAgent",
 }

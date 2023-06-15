@@ -85,7 +85,7 @@ export const fileMap = {
     icon: "icons/folderFilled.png",
 
     type: ValidTypeEnum.FOLDER,
-    dir: [FileEnum.NEAT],
+    dir: [FileEnum.NEAT, FileEnum.smwAgent],
   },
   //files
   [FileEnum.Intro]: {
@@ -128,7 +128,7 @@ export const fileMap = {
     initY: 20,
   },
   [FileEnum.NEAT]: {
-    type: ValidTypeEnum.PDF,
+    type: ValidTypeEnum.EXECUTABLE,
     window: (
       <ProjectView
         images={[
@@ -151,7 +151,31 @@ export const fileMap = {
     initX: 20,
     initY: 20,
   },
-
+  [FileEnum.smwAgent]: {
+    type: ValidTypeEnum.EXECUTABLE,
+    window: (
+      <ProjectView
+        images={[
+          "https://s3.amazonaws.com/birucan.dev/gallery/projects/smw1.png",
+          "https://s3.amazonaws.com/birucan.dev/gallery/projects/smw2.png",
+          "https://s3.amazonaws.com/birucan.dev/gallery/projects/smw3.png",
+        ]}
+        title="Super Mario World Agent"
+        text="AI Agent using a Chained NEAT generated neural networks, to select a neural network, also generated with NEAT, to solve different aspects and level of the first world of Super Mario World.It uses a grayscale downsize image of each frame of the game as input, using OpenCV, as well as values extracted from RAM, facilitated from Open AI's gym retro to generate the controller's outputs. This project was part of my Senior project "
+        hasSourceCode
+        sourceCode="https://github.com/birucan/SuperMarioWorldAgent/"
+        isHosted={false}
+      />
+    ),
+    currentTop: false,
+    icon: "icons/smw.png",
+    title: "SMW Agent",
+    minimized: false,
+    initHeight: 500,
+    initWidth: 700,
+    initX: 20,
+    initY: 20,
+  },
   //pics
   [FileEnum.brooklyn]: {
     type: ValidTypeEnum.JPG,

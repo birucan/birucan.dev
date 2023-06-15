@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./style.css";
 
 const Carousel = ({ images = [] }: { images: string[] }) => {
@@ -14,7 +14,7 @@ const Carousel = ({ images = [] }: { images: string[] }) => {
         setCurImg(0);
       }
       setCurClassname("fade");
-    }, 400);
+    }, 500);
   };
 
   const handlePrev = () => {
@@ -26,7 +26,7 @@ const Carousel = ({ images = [] }: { images: string[] }) => {
         setCurImg(images.length - 1);
       }
       setCurClassname("fade");
-    }, 400);
+    }, 500);
   };
 
   return (

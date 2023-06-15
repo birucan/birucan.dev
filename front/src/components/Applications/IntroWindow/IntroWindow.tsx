@@ -23,7 +23,7 @@ const IntroWindow = () => {
 
       <p style={{ textAlign: "center", fontSize: 14 }}>
         <br />
-        Hello! <br /> <br />
+        <b> Hello!</b> <br /> <br />
         I'm Tomás Kavanagh, a Software Engineer with 3 years of expirience.
         <br />
         <br />

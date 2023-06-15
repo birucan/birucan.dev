@@ -20,7 +20,7 @@ const ProjectView = ({
 }) => {
   return (
     <>
-      <Carousel images={images} />
+      {images.length === 0 ? <></> : <Carousel images={images} />}
       <div
         style={{
           display: "flex",
@@ -36,24 +36,34 @@ const ProjectView = ({
         <div className="field-row" style={{ justifyContent: "center" }}>
           {hasSourceCode ? (
             <button
-              style={{ left: 100 }}
+              style={{
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+              }}
               onClick={() => {
                 window.open(sourceCode);
               }}
             >
-              Source Code
+              <img height={16} width={16} src="icons/github.png" />
+              {"   Source Code"}
             </button>
           ) : (
             <></>
           )}
           {isHosted ? (
             <button
-              style={{ left: 100 }}
+              style={{
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+              }}
               onClick={() => {
-                window.open(hostLink);
+                window.open(sourceCode);
               }}
             >
-              Project Link
+              <img height={16} width={16} src="icons/ie.png" />
+              {"   Project Link"}
             </button>
           ) : (
             <></>
