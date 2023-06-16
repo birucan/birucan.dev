@@ -1,9 +1,11 @@
 import React, { useState } from "react";
 import { useRecoilState } from "recoil";
+import StartMenu from "../StartMenu/StartMenu";
 import { currentWindowState } from "../../State/global";
 
 const Taskbar = ({ handleMinimize, clickWindow }) => {
   const [activeWindows, setActiveWindows] = useRecoilState(currentWindowState);
+  const [isOpen, setIsOpen] = useState(false);
 
   const sunk = {
     backgroundColor: "#b0b0b0",
@@ -13,100 +15,108 @@ const Taskbar = ({ handleMinimize, clickWindow }) => {
     outlineOffset: "-4px",
   };
   const buttonStyle = { textAlign: "right" };
+
+  const startMenuStyle = {
+    paddingLeft: 8,
+    paddingRight: 5,
+    height: 32,
+  };
   return (
-    <div
-      style={{
-        background: "#c0c0c0",
-        height: 35,
-        width: "100vw",
-        position: "fixed",
-        bottom: 0,
-        left: 0,
-        borderTop: "2px solid #fff",
-        zIndex: 2147483600,
-      }}
-    >
+    <>
+      <StartMenu isOpen={isOpen} />
       <div
-        className="startButtonContainer"
         style={{
-          display: "flex",
-          flexDirection: "row",
+          background: "#c0c0c0",
+          height: 35,
+          width: "100vw",
+          position: "fixed",
+          bottom: 0,
+          left: 0,
+          borderTop: "2px solid #fff",
+          zIndex: 2147483599,
         }}
       >
-        <button
+        <div
+          className="startButtonContainer"
           style={{
-            paddingLeft: 8,
-            paddingRight: 5,
-            height: 32,
+            display: "flex",
+            flexDirection: "row",
           }}
         >
-          <div
-            style={{
-              display: "flex",
-              flexDirection: "row",
-              alignItems: "center",
-            }}
+          <button
+            onClick={() => setIsOpen(!isOpen)}
+            style={
+              isOpen ? { ...startMenuStyle, ...sunk } : { ...startMenuStyle }
+            }
           >
-            <img
+            <div
               style={{
-                padding: "0px 8px 0px 0px",
-                margin: "0px 0px 0px 0px",
+                display: "flex",
+                flexDirection: "row",
+                alignItems: "center",
               }}
-              height={24}
-              width={24}
-              alt=""
-              src="icons/start.png"
-            />
-            <b>Start</b>
-          </div>
-        </button>
-
-        <div class="status-bar" />
-
-        {activeWindows.map((window) => {
-          return (
-            <>
-              <button
-                style={
-                  window.currentTop && !window.minimized
-                    ? { ...sunk, ...buttonStyle }
-                    : { ...buttonStyle }
-                }
-                onClick={() => {
-                  window.minimized
-                    ? handleMinimize(window.id)
-                    : clickWindow(window.id, window.zIndex);
+            >
+              <img
+                style={{
+                  padding: "0px 8px 0px 0px",
+                  margin: "0px 0px 0px 0px",
                 }}
-              >
-                <div
-                  style={{
-                    display: "flex",
-                    gap: 15,
-                    flexDirection: "row",
-                    alignItems: "center",
+                height={24}
+                width={24}
+                alt=""
+                src="icons/start.png"
+              />
+              <b>Start</b>
+            </div>
+          </button>
+
+          <div class="status-bar" />
+
+          {activeWindows.map((window) => {
+            return (
+              <>
+                <button
+                  style={
+                    window.currentTop && !window.minimized
+                      ? { ...sunk, ...buttonStyle }
+                      : { ...buttonStyle }
+                  }
+                  onClick={() => {
+                    window.minimized
+                      ? handleMinimize(window.id)
+                      : clickWindow(window.id, window.zIndex);
                   }}
                 >
-                  <img
+                  <div
                     style={{
-                      maxHeight: "24px",
-                      maxWidth: "24px",
-                      padding: "0px 0px 0px 0px",
-                      margin: "0px 0px 0px 0px",
+                      display: "flex",
+                      gap: 15,
+                      flexDirection: "row",
+                      alignItems: "center",
                     }}
-                    height={24}
-                    width={24}
-                    alt=""
-                    src={window.icon}
-                  />
+                  >
+                    <img
+                      style={{
+                        maxHeight: "24px",
+                        maxWidth: "24px",
+                        padding: "0px 0px 0px 0px",
+                        margin: "0px 0px 0px 0px",
+                      }}
+                      height={24}
+                      width={24}
+                      alt=""
+                      src={window.icon}
+                    />
 
-                  <div>{window.title}</div>
-                </div>
-              </button>
-            </>
-          );
-        })}
+                    <div>{window.title}</div>
+                  </div>
+                </button>
+              </>
+            );
+          })}
+        </div>
       </div>
-    </div>
+    </>
   );
 };
 export default Taskbar;
