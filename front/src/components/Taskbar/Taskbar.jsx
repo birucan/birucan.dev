@@ -23,7 +23,7 @@ const Taskbar = ({ handleMinimize, clickWindow }) => {
   };
   return (
     <>
-      <StartMenu isOpen={isOpen} />
+      <StartMenu isOpen={isOpen} setIsOpen={setIsOpen} />
       <div
         style={{
           background: "#c0c0c0",
