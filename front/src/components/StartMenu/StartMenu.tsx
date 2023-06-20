@@ -28,7 +28,7 @@ const StartMenu = ({
           style={{
             background: "#c0c0c0",
             height: 350,
-            width: 200,
+            minWidth: 200,
             position: "fixed",
             bottom: 37,
             left: 0,
@@ -41,10 +41,9 @@ const StartMenu = ({
         >
           <div
             style={{
-              width: "100%",
               height: 20,
               borderBottom: "2px solid darkGrey",
-              padding: "8px 8px 8px 8px",
+              padding: "8px 0px 8px 8px",
               fontSize: 15,
             }}
             onClick={() => {
@@ -57,7 +56,6 @@ const StartMenu = ({
           </div>
           <div
             style={{
-              width: "100%",
               height: 20,
               borderBottom: "2px solid darkGrey",
               padding: "8px 8px 8px 8px",
@@ -73,7 +71,6 @@ const StartMenu = ({
           </div>
           <div
             style={{
-              width: "100%",
               height: 20,
               borderBottom: "2px solid darkGrey",
               padding: "8px 8px 8px 8px",

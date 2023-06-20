@@ -27,7 +27,7 @@ export const currentWindowState = atom<WindowType[]>({
       zIndex: 2,
       currentTop: false,
       icon: "icons/folderFilled.png",
-      title: "Portafolio",
+      title: "Portfolio",
       minimized: false,
       initHeight: 200,
       initWidth: 200,

@@ -81,7 +81,7 @@ export const fileMap = {
     dir: [FileEnum.Resume, FileEnum.testFolder],
   },
   [FileEnum.Portafolio]: {
-    title: "Portafolio",
+    title: "Portfolio",
     icon: "icons/folderFilled.png",
 
     type: ValidTypeEnum.FOLDER,
