@@ -1,7 +1,14 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "98.css";
+import ReactGA from "react-ga";
 
 const IntroMobileWindow = () => {
+  ReactGA.initialize("G-VPN1R31TE3");
+
+  useEffect(() => {
+    ReactGA.pageview(window.location.pathname + window.location.search);
+  }, []);
+
   return (
     <div
       style={{

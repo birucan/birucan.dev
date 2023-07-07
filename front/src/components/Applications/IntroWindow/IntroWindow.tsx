@@ -27,7 +27,7 @@ const IntroWindow = () => {
         I'm Tomás Kavanagh, a Software Engineer with 3 years of expirience.
         <br />
         <br />
-        This is my portafolio site, it's meant to immitate a functional
+        This is my portfolio site, it's meant to immitate a functional
         <img
           style={{ paddingLeft: 5, paddingRight: 5 }}
           height={16}

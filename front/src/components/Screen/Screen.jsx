@@ -1,14 +1,20 @@
 import React, { useState, useEffect } from "react";
 import Window from "../Window/Window";
-import IntroWindow from "../Applications/IntroWindow/IntroWindow";
 import Taskbar from "../Taskbar/Taskbar";
 import Desktop from "../Desktop/Desktop";
-import PDFDisplay from "../Applications/ResumeDisplay/ResumeDisplay";
 import { useRecoilState } from "recoil";
 import { currentWindowState } from "../../State/global";
 import { ValidTypeEnum } from "../../types";
 import IntroMobileWindow from "../Applications/IntroMobileWindow/IntroMobileWindow";
+import ReactGA from "react-ga";
+
 const Screen = () => {
+  ReactGA.initialize("G-VPN1R31TE3");
+
+  useEffect(() => {
+    ReactGA.pageview(window.location.pathname + window.location.search);
+  }, []);
+
   const [activeWindows, setActiveWindows] = useRecoilState(currentWindowState);
 
   //const [windowNum, setWindowNum] = useState(2);
