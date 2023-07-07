@@ -9,9 +9,8 @@ import IntroMobileWindow from "../Applications/IntroMobileWindow/IntroMobileWind
 import ReactGA from "react-ga";
 
 const Screen = () => {
-  ReactGA.initialize("G-VPN1R31TE3");
-
   useEffect(() => {
+    ReactGA.initialize("G-VPN1R31TE3");
     ReactGA.pageview(window.location.pathname + window.location.search);
   }, []);
 
