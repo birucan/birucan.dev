@@ -10,8 +10,8 @@ import ReactGA from "react-ga";
 
 const Screen = () => {
   useEffect(() => {
-    ReactGA.initialize("G-VPN1R31TE3");
     ReactGA.pageview(window.location.pathname + window.location.search);
+    ReactGA.event({ action: "open", category: "Screen" });
   }, []);
 
   const [activeWindows, setActiveWindows] = useRecoilState(currentWindowState);

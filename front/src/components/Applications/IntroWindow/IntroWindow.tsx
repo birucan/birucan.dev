@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import ReactGA from "react-ga";
 import "98.css";
 
 const IntroWindow = () => {
@@ -56,6 +57,7 @@ const IntroWindow = () => {
             alignItems: "center",
           }}
           onClick={() => {
+            ReactGA.event({ action: "open resume", category: "intro window" });
             window.open(
               "https://s3.amazonaws.com/birucan.dev/Tomas+Kavanagh+Resume.pdf"
             );
@@ -72,6 +74,7 @@ const IntroWindow = () => {
             alignItems: "center",
           }}
           onClick={() => {
+            ReactGA.event({ action: "open github", category: "intro window" });
             window.open("https://github.com/birucan");
           }}
         >
@@ -86,6 +89,11 @@ const IntroWindow = () => {
             alignItems: "center",
           }}
           onClick={() => {
+            ReactGA.event({
+              action: "open linkedin",
+              category: "intro window",
+            });
+
             window.open("https://linkedin.com/in/tomas-kavanagh");
           }}
         >

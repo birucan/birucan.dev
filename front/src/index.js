@@ -5,9 +5,6 @@ import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { RecoilRoot } from "recoil";
 import RecoilNexus from "recoil-nexus";
-import ReactGA from "react-ga";
-
-ReactGA.initialize("G-VPN1R31TE3");
 
 ReactDOM.render(
   <React.StrictMode>
