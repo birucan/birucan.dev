@@ -25,7 +25,7 @@ const IntroWindow = () => {
       <p style={{ textAlign: "center", fontSize: 14 }}>
         <br />
         <b> Hello!</b> <br /> <br />
-        I'm Tomás Kavanagh, a Software Engineer with 3 years of expirience.
+        I'm Tomás Kavanagh, a Software Engineer.
         <br />
         <br />
         This is my portfolio site, it's meant to immitate a functional
