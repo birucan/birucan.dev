@@ -42,8 +42,8 @@ const IntroWindow = () => {
           width={16}
           src="logo192.png"
         />{" "}
-        React and everything in the desktop can be clicked and used, more to
-        come as I work on it.
+        React. Everything in the desktop can be clicked and used, more to come
+        as I work on it.
       </p>
       <br />
       <br />
